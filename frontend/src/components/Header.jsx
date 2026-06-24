@@ -13,9 +13,11 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cartPopupOpen, setCartPopupOpen] = useState(false);
   const [wishlistOpen, setWishlistOpen] = useState(false);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
+    setUserDropdownOpen(false);
     navigate('/');
   };
 
@@ -271,18 +273,49 @@ export default function Header() {
                             className="dropdown-toggle" 
                             style={{ cursor: 'pointer', fontWeight: 600, color: 'inherit' }} 
                             id="userMenu" 
-                            data-toggle="dropdown"
+                            onClick={() => setUserDropdownOpen(!userDropdownOpen)}
                           >
                             <i className="icon-user" style={{ marginRight: '5px' }}></i> {user.name}
                           </span>
-                          <div className="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu" style={{ padding: '10px 0', border: '1px solid #eee', marginTop: '10px' }}>
+                          <div 
+                            className={`dropdown-menu dropdown-menu-right ${userDropdownOpen ? 'show' : ''}`} 
+                            style={{ 
+                              display: userDropdownOpen ? 'block' : 'none', 
+                              padding: '10px 0', 
+                              border: '1px solid #eee', 
+                              marginTop: '10px',
+                              position: 'absolute',
+                              right: 0,
+                              left: 'auto',
+                              zIndex: 1000,
+                              background: '#fff',
+                              minWidth: '150px'
+                            }} 
+                            aria-labelledby="userMenu"
+                          >
                             {user.role === 'ADMIN' && (
-                              <Link to="/admin" className="dropdown-item" style={{ color: '#111', fontSize: '13px' }}>Admin Dashboard</Link>
+                              <Link 
+                                to="/admin" 
+                                className="dropdown-item" 
+                                style={{ color: '#111', fontSize: '13px', display: 'block', padding: '5px 15px' }}
+                                onClick={() => setUserDropdownOpen(false)}
+                              >
+                                Admin Dashboard
+                              </Link>
                             )}
                             <button 
                               onClick={handleLogout} 
                               className="dropdown-item text-danger btn-link" 
-                              style={{ cursor: 'pointer', background: 'none', border: 'none', width: '100%', textAlign: 'left', fontSize: '13px' }}
+                              style={{ 
+                                cursor: 'pointer', 
+                                background: 'none', 
+                                border: 'none', 
+                                width: '100%', 
+                                textAlign: 'left', 
+                                fontSize: '13px', 
+                                display: 'block', 
+                                padding: '5px 15px' 
+                              }}
                             >
                               Logout
                             </button>

@@ -23,7 +23,7 @@ export default function Shop() {
   useEffect(() => {
     setSearchField(searchInput);
     setMinPriceField(minPrice);
-    maxPriceField && setMaxPriceField(maxPrice);
+    setMaxPriceField(maxPrice);
   }, [searchInput, minPrice, maxPrice]);
 
   const fetchShopProducts = async () => {

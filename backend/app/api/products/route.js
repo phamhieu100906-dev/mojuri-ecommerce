@@ -20,8 +20,10 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const category = searchParams.get('category');
     const search = searchParams.get('search');
-    const minPrice = parseFloat(searchParams.get('minPrice') || '0');
-    const maxPrice = parseFloat(searchParams.get('maxPrice') || '999999');
+    let minPrice = parseFloat(searchParams.get('minPrice') || '0');
+    let maxPrice = parseFloat(searchParams.get('maxPrice') || '999999');
+    if (isNaN(minPrice)) minPrice = 0;
+    if (isNaN(maxPrice)) maxPrice = 999999;
     const sort = searchParams.get('sort');
     
     const page = parseInt(searchParams.get('page') || '1');
