@@ -52,7 +52,7 @@ export default function Contacts() {
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 'bold', margin: 0 }}>Hộp thư liên hệ (Inbox)</h2>
+        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 'bold', margin: 0, fontSize: '32px' }}>Hộp thư liên hệ (Inbox)</h2>
       </div>
 
       <div className="row">
@@ -67,52 +67,52 @@ export default function Contacts() {
           ) : error ? (
             <div className="alert alert-danger">Lỗi khi tải danh sách tin nhắn.</div>
           ) : (
-            <div className="card border-0 shadow-sm p-3 bg-white">
+            <div className="admin-card p-3">
               <div className="table-responsive">
-                <table className="table table-hover align-middle" style={{ margin: 0 }}>
+                <table className="admin-table table-hover align-middle" style={{ margin: 0 }}>
                   <thead>
                     <tr>
-                      <th>Khách hàng</th>
-                      <th>Tiêu đề</th>
+                      <th>Người gửi</th>
+                      <th>Tiêu đề hỗ trợ</th>
                       <th>Trạng thái</th>
-                      <th>Ngày gửi</th>
-                      <th className="text-center">Thao tác</th>
+                      <th>Ngày nhận</th>
+                      <th className="text-center" style={{ width: '180px' }}>Thao tác</th>
                     </tr>
                   </thead>
                   <tbody>
                     {contacts && contacts.length === 0 ? (
                       <tr>
-                        <td colSpan="5" className="text-center py-4 text-muted">Hộp thư trống</td>
+                        <td colSpan="5" className="text-center py-4 text-muted">Hộp thư hỗ trợ hiện đang trống.</td>
                       </tr>
                     ) : (
                       contacts && contacts.map((contact) => (
                         <tr 
                           key={contact.id} 
                           onClick={() => handleViewMessage(contact)}
-                          style={{ cursor: 'pointer', background: selectedContact?.id === contact.id ? '#f8f9fa' : 'transparent' }}
+                          style={{ cursor: 'pointer', background: selectedContact?.id === contact.id ? '#f8fafc' : 'transparent' }}
                         >
                           <td>
-                            <div className="font-weight-bold" style={{ color: '#111' }}>{contact.name}</div>
-                            <small className="text-muted">{contact.email}</small>
+                            <div className="font-weight-bold" style={{ color: '#1e293b' }}>{contact.name}</div>
+                            <small className="text-muted" style={{ fontSize: '11px' }}>{contact.email}</small>
                           </td>
                           <td style={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                            <span style={{ fontWeight: !contact.isRead ? 'bold' : 'normal' }}>
+                            <span style={{ fontWeight: !contact.isRead ? 'bold' : 'normal', color: !contact.isRead ? '#0f172a' : '#475569' }}>
                               {contact.subject}
                             </span>
                           </td>
                           <td>
-                            <span className={`badge ${contact.isRead ? 'bg-light text-dark' : 'bg-warning text-white'}`} style={{ border: contact.isRead ? '1px solid #ddd' : 'none' }}>
+                            <span className={`badge ${contact.isRead ? 'bg-light text-dark' : 'bg-warning text-white'}`} style={{ border: contact.isRead ? '1px solid #e2e8f0' : 'none', padding: '5px 10px', borderRadius: '4px' }}>
                               {contact.isRead ? 'Đã đọc' : 'Chưa đọc'}
                             </span>
                           </td>
                           <td>{new Date(contact.createdAt).toLocaleDateString('vi-VN')}</td>
-                          <td className="text-center">
+                          <td className="text-center" onClick={(e) => e.stopPropagation()}>
                             <button 
                               onClick={(e) => handleToggleRead(contact, e)} 
-                              className="btn btn-outline-dark btn-sm mr-2"
-                              style={{ fontSize: '11px' }}
+                              className="admin-btn-outline"
+                              style={{ fontSize: '11px', padding: '5px 10px' }}
                             >
-                              {contact.isRead ? 'Đánh dấu chưa đọc' : 'Đánh dấu đã đọc'}
+                              {contact.isRead ? 'Chưa đọc' : 'Đã đọc'}
                             </button>
                           </td>
                         </tr>
@@ -127,40 +127,40 @@ export default function Contacts() {
 
         {/* Selected Message Detail panel */}
         {selectedContact && (
-          <div className="col-lg-5 mb-4">
-            <div className="card border-0 shadow-sm p-4 bg-white sticky-top" style={{ top: '90px' }}>
+          <div className="col-lg-5 mb-4 animate-fade-in">
+            <div className="admin-card sticky-top" style={{ top: '90px', border: '1px solid var(--admin-primary) !important' }}>
               <div className="d-flex justify-content-between align-items-start mb-4">
-                <h4 style={{ fontSize: '16px', fontWeight: 'bold', margin: 0, textTransform: 'uppercase' }}>Chi tiết tin nhắn</h4>
-                <button type="button" className="close" onClick={() => setSelectedContact(null)} style={{ border: 'none', background: 'none', fontSize: '20px', cursor: 'pointer' }}>
+                <h4 style={{ fontSize: '15px', fontWeight: 'bold', margin: 0, textTransform: 'uppercase', color: '#0f172a', letterSpacing: '0.5px' }}>Chi tiết tin nhắn</h4>
+                <button type="button" className="close" onClick={() => setSelectedContact(null)} style={{ border: 'none', background: 'none', fontSize: '22px', cursor: 'pointer', color: '#64748b', outline: 'none' }}>
                   <span>&times;</span>
                 </button>
               </div>
 
-              <div className="border-bottom pb-3 mb-3">
+              <div className="border-bottom pb-3 mb-3" style={{ fontSize: '13.5px' }}>
                 <div className="mb-2">
-                  <span className="text-muted" style={{ fontSize: '11px', textTransform: 'uppercase', fontWeight: 600 }}>Từ:</span>
-                  <div className="font-weight-bold" style={{ color: '#111' }}>{selectedContact.name} ({selectedContact.email})</div>
+                  <span className="text-muted" style={{ fontSize: '11px', textTransform: 'uppercase', fontWeight: 600, display: 'block' }}>Khách hàng:</span>
+                  <div className="font-weight-bold" style={{ color: '#0f172a' }}>{selectedContact.name} &lt;{selectedContact.email}&gt;</div>
                 </div>
                 <div className="mb-2">
-                  <span className="text-muted" style={{ fontSize: '11px', textTransform: 'uppercase', fontWeight: 600 }}>Tiêu đề:</span>
-                  <div className="font-weight-bold" style={{ color: '#111', fontSize: '15px' }}>{selectedContact.subject}</div>
+                  <span className="text-muted" style={{ fontSize: '11px', textTransform: 'uppercase', fontWeight: 600, display: 'block' }}>Tiêu đề:</span>
+                  <div className="font-weight-bold" style={{ color: '#0f172a', fontSize: '14px' }}>{selectedContact.subject}</div>
                 </div>
                 <div>
-                  <span className="text-muted" style={{ fontSize: '11px', textTransform: 'uppercase', fontWeight: 600 }}>Thời gian:</span>
-                  <div>{new Date(selectedContact.createdAt).toLocaleString('vi-VN')}</div>
+                  <span className="text-muted" style={{ fontSize: '11px', textTransform: 'uppercase', fontWeight: 600, display: 'block' }}>Thời gian gửi:</span>
+                  <div style={{ color: '#334155' }}>{new Date(selectedContact.createdAt).toLocaleString('vi-VN')}</div>
                 </div>
               </div>
 
               <div className="mb-4">
                 <span className="text-muted d-block mb-2" style={{ fontSize: '11px', textTransform: 'uppercase', fontWeight: 600 }}>Nội dung tin nhắn:</span>
-                <div className="p-3 bg-light rounded" style={{ whiteSpace: 'pre-line', minHeight: '120px', fontSize: '14px', lineHeight: '1.6', color: '#333' }}>
+                <div className="p-3 bg-light rounded" style={{ whiteSpace: 'pre-line', minHeight: '120px', fontSize: '13.5px', lineHeight: '1.6', color: '#334155', border: '1px solid #f1f5f9' }}>
                   {selectedContact.message}
                 </div>
               </div>
 
               <div>
-                <a href={`mailto:${selectedContact.email}?subject=Re: ${selectedContact.subject}`} className="btn btn-dark btn-sm w-100" style={{ background: '#111' }}>
-                  <i className="fa fa-reply mr-1"></i> Phản hồi email khách hàng
+                <a href={`mailto:${selectedContact.email}?subject=Re: ${selectedContact.subject}`} className="admin-btn-primary w-100 text-center d-block" style={{ textDecoration: 'none' }}>
+                  <i className="fa fa-reply mr-2"></i> Phản hồi email khách hàng
                 </a>
               </div>
             </div>

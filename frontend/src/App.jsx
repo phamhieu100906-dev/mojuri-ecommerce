@@ -13,6 +13,7 @@ import BlogDetail from './pages/client/BlogDetail';
 import Contact from './pages/client/Contact';
 import Login from './pages/client/Login';
 import Register from './pages/client/Register';
+import MyOrders from './pages/client/MyOrders';
 
 // Admin pages
 import AdminLayout from './pages/admin/AdminLayout';
@@ -59,6 +60,7 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/my-orders" element={<MyOrders />} />
           </Route>
 
           {/* Admin Routes */}

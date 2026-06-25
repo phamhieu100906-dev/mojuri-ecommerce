@@ -161,28 +161,28 @@ export default function Products() {
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 'bold', margin: 0 }}>Quản lý sản phẩm</h2>
-        <button onClick={handleOpenCreateForm} className="btn btn-dark" style={{ background: '#111' }}>
-          <i className="fa fa-plus mr-1"></i> Thêm sản phẩm
+        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 'bold', margin: 0, fontSize: '32px' }}>Quản lý sản phẩm</h2>
+        <button onClick={handleOpenCreateForm} className="admin-btn-primary">
+          <i className="fa fa-plus mr-2"></i> Thêm sản phẩm
         </button>
       </div>
 
       {/* Form Card Overlay */}
       {isFormOpen && (
-        <div className="card p-4 mb-4 shadow-sm border-0 bg-white">
-          <h4 style={{ fontSize: '15px', fontWeight: 'bold', textTransform: 'uppercase', marginBottom: '20px' }}>
+        <div className="admin-card mb-4 animate-fade-in">
+          <h4 style={{ fontSize: '15px', fontWeight: 'bold', textTransform: 'uppercase', marginBottom: '20px', color: '#0f172a', letterSpacing: '0.5px' }}>
             {editingProduct ? 'Cập nhật sản phẩm' : 'Thêm sản phẩm mới'}
           </h4>
           
           <form onSubmit={handleSubmit}>
             <div className="row mb-3">
               <div className="col-md-6 mb-3 mb-md-0">
-                <label className="form-label" style={{ fontSize: '12px', fontWeight: 600 }}>Tên sản phẩm</label>
-                <input type="text" name="name" value={formData.name} onChange={handleInputChange} className="form-control form-control-sm" required />
+                <label className="form-label" style={{ fontSize: '12px', fontWeight: 600, color: '#475569' }}>Tên sản phẩm</label>
+                <input type="text" name="name" value={formData.name} onChange={handleInputChange} className="form-control admin-form-control" placeholder="Nhập tên sản phẩm..." required />
               </div>
               <div className="col-md-6">
-                <label className="form-label" style={{ fontSize: '12px', fontWeight: 600 }}>Danh mục</label>
-                <select name="category" value={formData.category} onChange={handleInputChange} className="form-select form-select-sm form-control form-control-sm">
+                <label className="form-label" style={{ fontSize: '12px', fontWeight: 600, color: '#475569' }}>Danh mục</label>
+                <select name="category" value={formData.category} onChange={handleInputChange} className="form-select admin-form-control">
                   <option value="Rings">Rings</option>
                   <option value="Necklaces">Necklaces</option>
                   <option value="Earrings">Earrings</option>
@@ -193,38 +193,38 @@ export default function Products() {
 
             <div className="row mb-3">
               <div className="col-md-4 mb-3 mb-md-0">
-                <label className="form-label" style={{ fontSize: '12px', fontWeight: 600 }}>Giá bán ($)</label>
-                <input type="number" step="0.01" name="price" value={formData.price} onChange={handleInputChange} className="form-control form-control-sm" required />
+                <label className="form-label" style={{ fontSize: '12px', fontWeight: 600, color: '#475569' }}>Giá bán ($)</label>
+                <input type="number" step="0.01" name="price" value={formData.price} onChange={handleInputChange} className="form-control admin-form-control" placeholder="0.00" required />
               </div>
               <div className="col-md-4 mb-3 mb-md-0">
-                <label className="form-label" style={{ fontSize: '12px', fontWeight: 600 }}>Giá khuyến mãi ($)</label>
-                <input type="number" step="0.01" name="salePrice" value={formData.salePrice} onChange={handleInputChange} className="form-control form-control-sm" />
+                <label className="form-label" style={{ fontSize: '12px', fontWeight: 600, color: '#475569' }}>Giá khuyến mãi ($)</label>
+                <input type="number" step="0.01" name="salePrice" value={formData.salePrice} onChange={handleInputChange} className="form-control admin-form-control" placeholder="Bỏ trống nếu không có sale" />
               </div>
               <div className="col-md-4">
-                <label className="form-label" style={{ fontSize: '12px', fontWeight: 600 }}>Số lượng tồn kho</label>
-                <input type="number" name="stock" value={formData.stock} onChange={handleInputChange} className="form-control form-control-sm" required />
+                <label className="form-label" style={{ fontSize: '12px', fontWeight: 600, color: '#475569' }}>Số lượng tồn kho</label>
+                <input type="number" name="stock" value={formData.stock} onChange={handleInputChange} className="form-control admin-form-control" placeholder="0" required />
               </div>
             </div>
 
             <div className="row mb-3">
               <div className="col-md-6 mb-3 mb-md-0">
-                <label className="form-label" style={{ fontSize: '12px', fontWeight: 600 }}>Ảnh đại diện (Thumbnail path)</label>
-                <input type="text" name="thumbnail" value={formData.thumbnail} onChange={handleInputChange} className="form-control form-control-sm" required />
+                <label className="form-label" style={{ fontSize: '12px', fontWeight: 600, color: '#475569' }}>Ảnh đại diện (Thumbnail path)</label>
+                <input type="text" name="thumbnail" value={formData.thumbnail} onChange={handleInputChange} className="form-control admin-form-control" required />
               </div>
               <div className="col-md-6">
-                <label className="form-label" style={{ fontSize: '12px', fontWeight: 600 }}>Bộ sưu tập ảnh (JSON gallery paths)</label>
-                <input type="text" name="images" value={formData.images} onChange={handleInputChange} className="form-control form-control-sm" required />
+                <label className="form-label" style={{ fontSize: '12px', fontWeight: 600, color: '#475569' }}>Bộ sưu tập ảnh (JSON gallery paths)</label>
+                <input type="text" name="images" value={formData.images} onChange={handleInputChange} className="form-control admin-form-control" required />
               </div>
             </div>
 
             <div className="mb-4">
-              <label className="form-label" style={{ fontSize: '12px', fontWeight: 600 }}>Mô tả sản phẩm</label>
-              <textarea name="description" value={formData.description} onChange={handleInputChange} className="form-control form-control-sm" rows="3" required></textarea>
+              <label className="form-label" style={{ fontSize: '12px', fontWeight: 600, color: '#475569' }}>Mô tả sản phẩm</label>
+              <textarea name="description" value={formData.description} onChange={handleInputChange} className="form-control admin-form-control" rows="3" placeholder="Nhập mô tả sản phẩm trang sức..." required></textarea>
             </div>
 
             <div className="d-flex gap-2">
-              <button type="submit" className="btn btn-dark btn-sm" style={{ background: '#111' }}>Lưu lại</button>
-              <button type="button" onClick={closeForm} className="btn btn-outline-secondary btn-sm">Hủy bỏ</button>
+              <button type="submit" className="admin-btn-primary">Lưu lại</button>
+              <button type="button" onClick={closeForm} className="admin-btn-outline">Hủy bỏ</button>
             </div>
           </form>
         </div>
@@ -238,18 +238,18 @@ export default function Products() {
           </div>
         </div>
       ) : (
-        <div className="card border-0 shadow-sm p-3 bg-white">
+        <div className="admin-card p-3">
           <div className="table-responsive">
-            <table className="table align-middle" style={{ margin: 0 }}>
+            <table className="admin-table align-middle" style={{ margin: 0 }}>
               <thead>
                 <tr>
-                  <th>Hình ảnh</th>
-                  <th>Tên</th>
+                  <th style={{ width: '80px' }}>Hình ảnh</th>
+                  <th>Tên sản phẩm</th>
                   <th>Danh mục</th>
                   <th>Giá gốc</th>
                   <th>Khuyến mãi</th>
                   <th>Tồn kho</th>
-                  <th className="text-center">Thao tác</th>
+                  <th className="text-center" style={{ width: '180px' }}>Thao tác</th>
                 </tr>
               </thead>
               <tbody>
@@ -258,22 +258,27 @@ export default function Products() {
                   return (
                     <tr key={product.id}>
                       <td>
-                        <img src={imageSrc} alt="" style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px' }} onError={(e) => e.target.src = "https://html-demo-orcin.vercel.app/premium/mojuri/media/product/3.jpg"} />
+                        <img 
+                          src={imageSrc} 
+                          className="admin-avatar" 
+                          alt={product.name} 
+                          onError={(e) => e.target.src = "https://html-demo-orcin.vercel.app/premium/mojuri/media/product/3.jpg"} 
+                        />
                       </td>
-                      <td className="font-weight-bold" style={{ color: '#111' }}>{product.name}</td>
-                      <td><span className="badge bg-light text-dark" style={{ border: '1px solid #ddd' }}>{product.category}</span></td>
+                      <td className="font-weight-bold" style={{ color: '#1e293b' }}>{product.name}</td>
+                      <td><span className="badge bg-light text-dark" style={{ border: '1px solid #e2e8f0', padding: '5px 10px', borderRadius: '4px' }}>{product.category}</span></td>
                       <td>${product.price}</td>
-                      <td style={{ color: '#e0a96d', fontWeight: 'bold' }}>{product.salePrice ? `$${product.salePrice}` : '-'}</td>
+                      <td style={{ color: '#c5a880', fontWeight: 'bold' }}>{product.salePrice ? `$${product.salePrice}` : '-'}</td>
                       <td>
                         {product.stock > 0 ? (
-                          <span className="text-success">{product.stock} cái</span>
+                          <span className="text-success font-weight-bold">{product.stock} chiếc</span>
                         ) : (
                           <span className="text-danger font-weight-bold">Hết hàng</span>
                         )}
                       </td>
                       <td className="text-center">
-                        <button onClick={() => handleEditClick(product)} className="btn btn-outline-dark btn-sm mr-2">Sửa</button>
-                        <button onClick={() => handleDeleteClick(product.id)} className="btn btn-outline-danger btn-sm">Xóa</button>
+                        <button onClick={() => handleEditClick(product)} className="admin-btn-edit mr-2">Sửa</button>
+                        <button onClick={() => handleDeleteClick(product.id)} className="admin-btn-danger">Xóa</button>
                       </td>
                     </tr>
                   );

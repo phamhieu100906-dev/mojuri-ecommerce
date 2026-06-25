@@ -82,6 +82,7 @@ export default function Header() {
                   {user.role === 'ADMIN' && (
                     <li style={{ padding: '10px 0' }}><Link to="/admin" onClick={() => setMobileMenuOpen(false)} style={{ color: '#111', fontWeight: 600, textDecoration: 'none' }}>Admin Dashboard</Link></li>
                   )}
+                  <li style={{ padding: '10px 0' }}><Link to="/my-orders" onClick={() => setMobileMenuOpen(false)} style={{ color: '#111', fontWeight: 600, textDecoration: 'none' }}>Đơn hàng của tôi</Link></li>
                   <li style={{ padding: '10px 0' }}>
                     <button 
                       onClick={() => { handleLogout(); setMobileMenuOpen(false); }} 
@@ -303,6 +304,14 @@ export default function Header() {
                                 Admin Dashboard
                               </Link>
                             )}
+                            <Link 
+                              to="/my-orders" 
+                              className="dropdown-item" 
+                              style={{ color: '#111', fontSize: '13px', display: 'block', padding: '5px 15px' }}
+                              onClick={() => setUserDropdownOpen(false)}
+                            >
+                              Đơn hàng của tôi
+                            </Link>
                             <button 
                               onClick={handleLogout} 
                               className="dropdown-item text-danger btn-link" 

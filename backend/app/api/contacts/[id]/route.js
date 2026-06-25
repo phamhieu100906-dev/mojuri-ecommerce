@@ -10,7 +10,7 @@ const updateContactSchema = z.object({
 export async function PUT(request, { params }) {
   try {
     requireAdmin(request);
-    const { id } = params;
+    const { id } = await params;
     const body = await request.json();
     const parsedData = updateContactSchema.parse(body);
 
