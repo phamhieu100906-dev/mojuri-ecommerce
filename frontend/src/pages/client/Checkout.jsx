@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useAuthStore } from '../../context/authStore';
 import { useCartStore } from '../../context/cartStore';
 
-const API_BASE = 'http://localhost:3000/api';
+const API_BASE = '/api';
 
 export default function Checkout() {
   const navigate = useNavigate();

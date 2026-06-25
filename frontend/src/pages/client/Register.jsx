@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuthStore } from '../../context/authStore';
 
-const API_BASE = 'http://localhost:3000/api';
+const API_BASE = '/api';
 
 export default function Register() {
   const navigate = useNavigate();

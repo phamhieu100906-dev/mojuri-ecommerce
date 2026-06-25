@@ -3,7 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { useAuthStore } from '../../context/authStore';
 
-const API_BASE = 'http://localhost:3000/api';
+const API_BASE = '/api';
 
 export default function Contacts() {
   const queryClient = useQueryClient();
