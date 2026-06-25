@@ -6,7 +6,7 @@ import { useCartStore } from '../../context/cartStore';
 import { useWishlistStore } from '../../context/wishlistStore';
 import ProductCard from '../../components/ProductCard';
 
-const API_BASE = '/api';
+const API_BASE = 'http://localhost:3000/api';
 
 export default function ProductDetail() {
   const { id } = useParams();

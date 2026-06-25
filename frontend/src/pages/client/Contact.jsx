@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const API_BASE = '/api';
+const API_BASE = 'http://localhost:3000/api';
 
 export default function Contact() {
   const [formData, setFormData] = useState({

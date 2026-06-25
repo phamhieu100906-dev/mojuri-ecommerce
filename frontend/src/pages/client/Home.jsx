@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import ProductCard from '../../components/ProductCard';
 
-const API_BASE = '/api';
+const API_BASE = 'http://localhost:3000/api';
 
 const fetchProducts = async () => {
   const { data } = await axios.get(`${API_BASE}/products?limit=8`);

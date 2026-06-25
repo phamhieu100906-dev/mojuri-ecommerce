@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-const API_BASE = '/api';
+const API_BASE = 'http://localhost:3000/api';
 
 export default function Blog() {
   const [searchParams, setSearchParams] = useSearchParams();
